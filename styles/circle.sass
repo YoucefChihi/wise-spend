@@ -1,0 +1,109 @@
+$pie-size: 200px
+
+.pie-container
+  position: relative
+  height: $pie-size - 2px
+  width: $pie-size - 2px
+  border-radius: $pie-size*0.5
+  box-shadow: $shadow-3
+  background: transparentize(black, 0.85)
+  @extend .center
+  // overflow: hidden
+  .over-pie
+    position: absolute
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    height: 80%
+    width: 80%
+    background: $background
+    border-radius: $pie-size*0.5
+    box-shadow: $shadow-1
+    overflow: hidden
+    z-index: 2
+    &:active
+      &:before
+        @extend .overlay-before
+    .current, .out-of, .total
+      width: 100%
+      text-align: center
+      font-weight: 300
+    .current
+      height: 1em
+      margin-top: $pie-size*0.2
+      font-size: 3em
+      color: transparentize(black, 0.3)
+    .out-of
+      font-size: 0.8em
+      height: 1em
+      margin-bottom: -$pie-size*0.05
+  .pie
+    position: absolute
+    width: $pie-size
+    height: $pie-size
+    border-radius: $pie-size*0.5
+    overflow: hidden
+    .right, .left
+      position: absolute
+      left: $pie-size*0.5
+      height: 100%
+      width: 50%
+      overflow: hidden
+      border-radius: 0 $pie-size*0.5 $pie-size*0.5 0
+      transform: rotate(0deg)
+      .fill
+        position: absolute
+        height: 100%
+        width: 100%
+        background: $teal
+        border-radius: 0 $pie-size*0.5 $pie-size*0.5 0
+        transform-origin: left center
+        transform: rotate(0deg)
+    .left
+      left: $pie-size*0.5 + 1px
+      transform: rotate(180deg)
+      transform-origin: left center
+      .fill
+        transform: rotate(0deg)
+
+.pie-actions
+  position: relative
+  z-index: 1
+  .feed, .withdraw
+    position: absolute
+    @extend .center
+    width: 100px
+    height: 50px
+    top: -25px
+    left: -55px
+    transition: all .2s ease-in-out
+    color: transparentize(white, .1)
+    border-radius: 50px
+    font-size: 0.9em
+    box-shadow: $shadow-1
+    text-transform: capitalize
+    &:active
+      &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        border-radius: 50px
+        background: transparentize(black, 0.8)
+  .feed
+    justify-content: flex-end
+    background: $green
+    padding-right: 10px
+    .label
+      margin-right: 15px
+  .withdraw
+    justify-content: flex-start
+    background: $red
+    padding-left: 10px
+  &.open
+    .feed
+      transform: translate3d($pie-size/2, 0, 0)
+    .withdraw
+      transform: translate3d(-$pie-size/2, 0, 0)

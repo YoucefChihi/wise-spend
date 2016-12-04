@@ -1,0 +1,274 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400)
+@import './constants'
+@import './button'
+
+.center
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-wrap: wrap
+
+.hidden
+  display: none
+
+html, body
+  margin: 0
+  font-family: "Lato", sans-serif
+  max-height: 100vh
+
+div, button
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none
+
+.root
+  height: 100vh
+  overflow: hidden
+  width: 100vw
+  position: absolute
+
+.container
+  height: 100vh
+  width: 100vw
+  display: block
+  background: $background
+  position: relative
+
+.budget, .balance
+  position: absolute
+  font-size: 50px
+  height: 40vh
+  width: 100%
+  @extend .center
+  .title, .amount
+    width: 100%
+    text-align: center
+    opacity: 0.5
+  .amount
+    margin-top: -20vh
+    font-weight: 100
+.budget
+  top: 0
+  transition: transform 0.3s
+  &.in
+    transform: translate3d(0, 10vh, 0)
+  &.out
+    transform: translate3d(0, -100vh, 0)
+  .feed
+    display: none
+    position: absolute
+    right: 5vw
+    transition: transform 0.2s
+    top: calc(40vh - 130px)
+    z-index: 1
+    color: transparentize(#fff, 0.2)
+    text-shadow: $shadow-3
+    font-size: 2em
+    &:active
+      color: transparentize(#fff, 0.6)
+
+    &.out
+      transform: translate3d(70px, 0, 0)
+.balance
+  bottom: 0
+  color: #fff
+  transition: all 0.2s
+  &.in
+    transform: translate3d(0, -50vh, 0)
+
+.days
+  position: absolute
+  top: 40vh
+  left: 0
+  width: 100%
+  transition: all 0.2s
+  display: flex
+  justify-content: space-around
+  height: 20vh
+  z-index: 2
+  .edited-day
+    transition: all 0.2s
+    position: absolute
+    opacity: 0
+    font-size: 50px
+    color: transparentize(#fff, 0.5)
+
+    @extend .center
+    .title, .amount
+      text-align: center
+      width: 100%
+      margin-bottom: 10px
+    .amount
+      font-weight: 100
+  &.in
+    transform: translate3d(0, -40vh, 0)
+    .edited-day
+      transform: translate3d(0, 30vh, 0)
+      opacity: 1
+  &.out
+    transform: translate3d(-100%, 0, 0)
+
+  .day
+    width: 14%
+    text-transform: capitalize
+    text-align: center
+    position: relative
+    .arrow
+      color: #eee
+      font-size: 4em
+      position: absolute
+      top: 14vh
+      left: 0.6vw
+      display: none
+      transform: rotate(90deg)
+    .title, .amount
+      z-index: 1
+      position: relative
+      box-shadow: $shadow-1
+      @extend .center
+      height: 10vh
+      font-weight: 100
+    .title
+      background: transparentize(black, 0.3)
+      color: #fff
+    .amount
+      background: #eee
+    &.selected
+      .arrow
+        display: initial
+    &.highlighted
+      .title, .amount
+        box-shadow: $shadow-2
+        font-weight: 500
+      .title
+        margin-top: -5px
+    &.disabled
+      &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: transparentize(black, 0.5)
+        z-index: 2
+
+.edit-overlay
+  position: absolute
+  top: 63vh
+  left: 0
+  transform: translate3d(0, 130%, 0)
+  width: 100%
+  height: 37vh
+  transition: all 0.3s
+  &.in
+    transform: translate3d(0, 0, 0)
+  .cnt
+    width: 100%
+    height: 100%
+    .keyboard
+      position: absolute
+      width: 100%
+      bottom: 0
+      display: block
+      background: darken(#eee, 15)
+      padding: 6px 0px
+      box-shadow: $shadow-2
+      .row
+        display: flex
+        justify-content: space-around
+        margin-bottom: 10px
+        .btn
+          width: 23vw
+          position: relative
+          height: 8vh
+          background: #eee
+          border-radius: 10%
+          box-shadow: $shadow-1
+          color: transparentize(black, 0.3)
+          @extend .center
+          font-size: 1.8em
+          &.blank
+            visibility: hidden
+          &.ctrl
+            background: darken(#eee, 8)
+          &.primary
+            background: darken(#eee, 50)
+            color: transparentize(#fff, 0.5)
+          &:before
+            content: ''
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            border-radius: 10%
+            visibility: hidden
+          &:active
+            &:before
+              visibility: visible
+              background: transparentize(black, 0.5)
+.hamburger
+  width: 30px
+  height: 25px
+  position: fixed
+  top: 0
+  left: 0
+  margin: 20px
+  z-index: 1
+  .bars
+    width: 30px
+    height: 5px
+    background: #fff
+    border-radius: 5px
+    transition: all 0.4s
+    position: relative
+    top: 10px
+    box-shadow: $shadow-1
+    &:before, &:after
+      content: ''
+      position: absolute
+      width: 100%
+      height: 5px
+      background: #fff
+      border-radius: 5px
+      transform-origin: right
+      box-shadow: $shadow-1
+    &:before
+      top: -11px
+    &:after
+      top: 11px
+
+.goods-menu
+  position: fixed
+  z-index: 4
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  transform: translate3d(-100%, 0, 0)
+  transition: transform 0.3s
+  background: #fff
+  &.in
+    transform: translate3d(0, 0, 0)
+  .cnt
+    position: relative
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: gray
+    .insider
+      position: absolute
+      top: 0
+      left: 0
+      width: 90%
+      height: 100%
+      background: lightgray
+      transition: transform .3s
+      transform: translate3d(-100%, 0, 0)
+      &.in
+        transform: translate3d(0, 0, 0)

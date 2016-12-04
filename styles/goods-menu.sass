@@ -1,0 +1,66 @@
+.goods-menu-overlay
+  position: fixed
+  z-index: -1
+  width: 100%
+  height: 100%
+  background: transparentize(grey, .8)
+  opacity: 0
+  transition: opacity .3s
+  &.open
+    z-index: 2
+    opacity: 1
+
+.goods-menu
+  position: fixed
+  z-index: 3
+  right: 0
+  height: 100%
+  width: 250px
+  overflow-y: auto
+  overflow-x: hidden
+  transition: all .3s
+  transform: translate3d(250px,0,0)
+  opacity: 0
+  .good
+    position: relative
+    margin: 5px 0px
+    width: 100%
+    height: 30px
+    left: 0px
+    display: flex
+    align-items: center
+    transition: all .3s
+    transform: translate3d(70%, 0, 0)
+    &.open
+      transform: translate3d(0, 0, 0)
+    .label
+      background: #eee
+      text-transform: capitalize
+      height: 100%
+      width: 30%
+      margin-left: 2px
+      @extend .center
+      border-radius: 10px 0 0 10px
+      box-shadow: $shadow-1
+    .prices
+      background: transparentize(white, .5)
+      height: 100%
+      width: 70%
+      display: flex
+      align-items: center
+      .price
+        position: relative
+        box-shadow: $shadow-1
+        background: white
+        margin-left: 10px
+        width: 50px
+        height: 25px
+        border-radius: 5px
+        @extend .center
+        &:active
+          &:before
+            @extend .overlay-before
+            border-radius: 5px
+  &.open
+    transform: translate3d(0,0,0)
+    opacity: 1

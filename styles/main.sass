@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400)
+@import './constants'
+@import './button'
+@import "./circle"
+@import "./goods-menu"
+
+.root
+  height: 100%
+  overflow: hidden
+  width: 100%
+  position: absolute
+
+.container
+  height: 100%
+  width: 100%
+  display: block
+  background: $background
+  position: relative
+
+.balance, .savings
+  display: flex
+  width: 100%
+  height: 50%
+  justify-content: center
+  align-items: center
+  flex-wrap: wrap
+
+.balance
+  box-shadow: $shadow-2
+  background: $background
+.savings
+  background: $bg
+  font-size: 4em
+  color: transparentize(black, .25)
+  .sv-cnt
+    .title, .amount
+      text-align: center
+    .amount
+      font-weight: lighter
+
+
+.round-button
+  position: fixed
+  bottom: 0
+  right: 0
+  margin: 20px
+  font-size: 3em
+  width: 60px
+  height: 60px
+  border-radius: 50%
+  box-shadow: $shadow-2
+  z-index: 3
+  background: $accent
+  content: ''
+  display: flex
+  justify-content: center
+  align-items: center
+  overflow: hidden
+  .label
+    transition: transform .3s ease-in-out
+    color: transparentize(white, 0.15)
+  &.open
+    .label
+      transform: rotate3d(0, 0, 1, 225deg)
+  &:focus
+    background: $accent
+
+.modal
+  position: fixed
+  background: transparentize(white, .05)
+  width: 100%
+  height: 100%
+  transition: opacity .3s
+  z-index: -1
+  opacity: 0
+  &.open
+    z-index: 100
+    opacity: 1
+  &.withdraw
+    .top-half
+      .submit
+        background: $red
+  &.feed
+    .top-half
+      .submit
+        background: $green
+  .top-half
+    height: 55%
+    padding: 10px 0px
+    @extend .center
+    .close
+      color: transparentize(black, .15)
+      position: fixed
+      top: 0
+      right: 0
+      margin: 10px
+      font-size: 2em
+      line-height: 0.5
+      text-shadow: $shadow-1
+    .submit
+      color: transparentize(white, .15)
+      width: 100px
+      height: 40px
+      transform: scale(1.5)
+      border-radius: 20px
+      text-transform: capitalize
+      box-shadow: $shadow-1
+      line-height: 0
+      @extend .center
+    .total-text, .total-value, .modal-value
+      width: 100%
+      text-align: center
+      font-size: 3em
+      color: transparentize(black, .15)
+    .total-value
+      font-weight: lighter
+      color: transparentize(black, .5)
+
+.right-swipeable, .left-swipeable
+  position: fixed
+  right: 0
+  top: 0
+  height: 100%
+  width: 10%
+  z-index: 0
+
+.left-swipeable
+  left: 0
+
+.main-menu
+  position: fixed
+  background: transparentize(black, 0.5)
+  z-index: 4
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  transition: all .3s
+  transform: translate3d(-100%, 0, 0)
+  &.open
+    transform: translate3d(0, 0, 0)

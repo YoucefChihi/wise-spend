@@ -1,0 +1,59 @@
+
+.buttonwrap
+  display: flex
+
+.button
+  margin: 0px 0px 10px 10px
+  padding: 0px 20px
+  text-transform: uppercase
+  color: #fff
+  display: flex
+  justify-content: center
+  align-items: center
+  background: cornflowerblue
+  height: 28px
+  position: relative
+  border-radius: 5px
+  overflow: hidden
+  box-shadow: $shadow-1
+  transition: all 0.3s
+  &.salmon
+    background: salmon
+  &.gray
+    background: gray
+  &:hover
+    box-shadow: $shadow-2
+  &:disabled
+    cursor: default
+    background: lighten(gray, 25)
+    &:before
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: gray
+      opacity: 0.2
+    &:after
+      display: none
+
+.gloss
+  &:after
+    content: ""
+    position: absolute
+    animation: gloss 2s linear infinite
+    background: $gradient-bg
+    height: 500%
+    width: 300%
+    transform: rotate(30deg)
+
+@keyframes gloss
+  0%
+    opacity: 1
+    top: -410%
+    left: -310%
+  100%
+    opacity: 1
+    top: 300%
+    left: 300%
