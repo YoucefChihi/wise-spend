@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Munny</name>
+    <name>HelloCordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -18,12 +18,6 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon src="money.png" width="57" height="57" density="mdpi" />
-        <preference name="StatusBarBackgroundColor" value="#00695C" />
-        <preference name="Orientation" value="portrait" />
-        <splash src="splash.png" density="port-hdpi"/>
-        <preference name="ShowSplashScreenSpinner" value="false"/>
-        <preference name="SplashScreenDelay" value="4500" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
