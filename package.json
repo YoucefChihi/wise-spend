@@ -12,6 +12,7 @@
     "classnames": "^2.2.5",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
+    "react-fastclick": "^3.0.1",
     "react-swipeable": "^3.7.0"
   },
   "devDependencies": {
